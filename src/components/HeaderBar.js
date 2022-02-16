@@ -14,7 +14,7 @@ export default HeaderBar
 
 const styles = StyleSheet.create({
     container: {
-        height: 100,
+        height: 70,
         paddingHorizontal: SIZES.radius,
         justifyContent: 'flex-end'
     },

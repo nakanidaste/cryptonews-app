@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity, FlatList, Animated, Image } f
 import { connect } from 'react-redux';
 import { getCoinMarket } from '../stores/market/marketAction';
 import { COLORS, constants, FONTS, SIZES, icons } from '../constants';
-import { HeaderBar } from '../components';
+import { HeaderBar, TabBar, Button } from '../components';
 
 const Market = ({ getCoinMarket, coins }) => {
 
@@ -13,7 +13,9 @@ const Market = ({ getCoinMarket, coins }) => {
 
     return (
         <View style={styles.container}>
-            <HeaderBar title="Market"/> 
+            <HeaderBar title="Market"/>
+            <TabBar />
+            <Button />
         </View>
     )
 }
