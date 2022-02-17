@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     container: {
         height: 70,
         paddingHorizontal: SIZES.radius,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     title: {
         color: COLORS.white,

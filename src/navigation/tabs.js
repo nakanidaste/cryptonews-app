@@ -2,7 +2,7 @@ import React from "react";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
-import { News, Portfolio, Market, Profile } from "../screens"
+import { News, Market, Profile } from "../screens"
 import { COLORS, icons } from "../constants"
 import { TabIcons } from "../components";
 

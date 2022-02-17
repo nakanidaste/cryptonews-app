@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     container1: {
         flexDirection: 'row',
         marginTop: SIZES.radius,
-        marginHorizontal: SIZES.radius
+        marginHorizontal: SIZES.radius,
     },
     container2: (containerStyle) => ({
         alignItems: 'center',

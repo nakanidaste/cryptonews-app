@@ -33,6 +33,8 @@ sparkline = true, priceChangePerc = "7d", perPage = 10, page = 1) {
                 Accept: "application/json"
             }
         }).then((response) => {
+            console.log("Get Coin Market")
+            console.log(response)
             if(response.state == 200) {
                 dispatch(getCoinMarketSuccess(response.data))
             } else {

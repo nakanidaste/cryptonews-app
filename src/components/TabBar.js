@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.gray
     },
     containerTab: {
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     switch: {
         paddingHorizontal: 15,

@@ -1,9 +1,14 @@
 import React, { useRef } from 'react'
 import { StyleSheet, Text, View, FlatList, Animated } from 'react-native'
 import { LineChart } from 'react-native-chart-kit'
-import { COLORS, SIZES } from '../constants'
+import { COLORS, SIZES, FONTS, constants } from '../constants'
 
-const Isi = () => {
+const marketTabs = constants.marketTabs.map((marketTab) => ({
+    ...marketTab,
+    ref: React.createRef()
+}))
+
+const Isi = ({item, index}) => {
     return (
         <View style={styles.container1}>
             <FlatList 
@@ -15,7 +20,10 @@ const Isi = () => {
 
                     return (
                         <View style={styles.container2}>
-
+                            <View style={styles.container3}>
+                                <Image source={{uri: item.image}} style={styles.image}/>
+                                <Text style={styles.label}>{item.name}</Text>
+                            </View>
                         </View>
                     )
                 }}
@@ -24,7 +32,7 @@ const Isi = () => {
     )
 }
 
-function MarketList() {
+function MarketList({ item }) {
 
     const scrollX = useRef(new Animated.Value(0)).current
 
@@ -47,9 +55,10 @@ function MarketList() {
                     useNativeDriver: false
                 })
             }
-            renderItem={({item, index}) => {
-                <Isi />
-            }}
+            // renderItem={({item, index}) => {
+            //     <Isi item={item} index={index}/>
+            // }}
+            renderItem={item}
         />
     )
     }
@@ -65,5 +74,19 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingHorizontal: SIZES.padding,
         marginBottom: SIZES.radius
+    },
+    container3: {
+        flex: 1.5,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    image: {
+        height: 20,
+        width: 20
+    },
+    label: {
+        marginLeft: SIZES.radius,
+        color: COLORS.white,
+        ...FONTS.h3
     }
 })
