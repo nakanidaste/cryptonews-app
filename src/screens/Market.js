@@ -1,52 +1,54 @@
-import React, { useRef, useCallback, useEffect } from 'react';
-import { StyleSheet, View, Text, FlatList, Animated, Image, TouchableOpacity } from 'react-native';
-import { connect } from 'react-redux';
-import { getCoinMarket } from '../stores/market/marketAction';
-import { COLORS, constants, FONTS, SIZES, icons } from '../constants';
-import { HeaderBar, TabBar, Button } from '../components';
-import { useFocusEffect } from '@react-navigation/native';
-import { LineChart } from 'react-native-chart-kit';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, FlatList, RefreshControl } from 'react-native';
+import { CoinList } from '../components';
+import { getMarketData } from '../services/requests'
 
-const Market = ({ getCoinMarket, coins }) => {
+const Market = () => {
+
+    const [coins, setCoins] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    const fetchCoins = async () => {
+        if (loading) {
+            return;
+        }
+        setLoading(true)
+        const coinsData = await getMarketData()
+        setCoins(coinsData)
+        setLoading(false)
+    }
+
+    const refecthCoins = async () => {
+        if (loading) {
+            return;
+        }
+        setLoading(true)
+        const coinsData = await getMarketData()
+        setCoins(coinsData)
+        setLoading(false)
+    }
+
+    useEffect(() => {
+        fetchCoins()
+    }, [])
 
     return (
-        <View style={styles.container}>
-            <HeaderBar title="Market"/>
-            <TabBar />
-            <Button />
-
-
-        </View>
+        <FlatList 
+            data={coins}
+            renderItem={({item}) => <CoinList marketCoin={item}/>}
+            refreshControl= {
+                <RefreshControl 
+                    refreshing={loading}
+                    tintColor= "white"
+                    onRefresh={refecthCoins}
+                />
+            }
+        />
     )
 }
 
-function mapStateToProps(state) {
-    return {
-        coins: state.marketReducer.coins
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        getCoinMarket: (currency, coinList, orderBy, sparkline, priceChangePerc, perPage, page) => {
-            return dispatch(getCoinMarket(currency, coinList, orderBy, sparkline, priceChangePerc, perPage, page))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Market)
+export default Market
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: COLORS.black
-    },
-    lineChart: {
-        flex: 1,
-        alignItems: 'center'
-    },
-    harga: {
-        color: COLORS.white,
-        ...FONTS.h4
-    },
+    
 })

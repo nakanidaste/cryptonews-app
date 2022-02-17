@@ -1,7 +1,5 @@
 import TabIcons from "./TabIcons";
-import HeaderBar from "./HeaderBar";
-import TabBar from "./TabBar";
 import Button from "./Button";
-import MarketList from "./MarketList";
+import CoinList from "./CoinList";
 
-export { TabIcons, HeaderBar, TabBar, Button, MarketList }
+export { TabIcons, Button, CoinList }
