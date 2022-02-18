@@ -69,12 +69,12 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         paddingTop: 5,
-        backgroundColor: COLORS.black
+        backgroundColor: COLORS.gray
     },
     coinContainer: {
         flexDirection: 'row',
         borderBottomWidth: 0.3,
-        borderBottomColor: COLORS.lightGreen,
+        borderBottomColor: COLORS.lightGray,
         padding: 10,
     },
     image: {
@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
     },
     title: {
         color: COLORS.white,
+        opacity: 0.87,
         ...FONTS.h3,
         fontWeight: 'bold',
         marginBottom: 5

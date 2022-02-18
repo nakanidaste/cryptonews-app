@@ -1,56 +1,29 @@
-import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import React, { memo } from 'react'
+import { StyleSheet, Text, Pressable } from 'react-native'
 import { SIZES, COLORS, FONTS } from '../constants'
 
-const TextButton = ({ label, containerStyle, onPress }) => {
-  return (
-    <TouchableOpacity 
-        style={styles.container2(containerStyle)}
-        onPress={onPress}>
-      <Text style={styles.label}>{label}</Text>
-    </TouchableOpacity>
-  )
+const Button = (props) => {
+
+    const { buttonHours, buttonText, selectedTime, setSelectedTime } = props
+    const isButtonSelected = (button) => button === selectedTime
+
+    return (
+        <Pressable 
+            style={{
+                paddingHorizontal: 5,
+                paddingVertical: 3,
+                borderRadius: 5,
+                backgroundColor: isButtonSelected(buttonHours) ? "#1e1e1e" : "transparent"
+            }}
+            onPress={() => setSelectedTime(buttonHours)}
+        >
+            <Text style={{ color: isButtonSelected(buttonHours) ? "white" : "grey"}}>{buttonText}</Text>
+        </Pressable>
+    )
 }
 
-function Button() {
-  return (
-    <View style={styles.container1}>
-        <TextButton label="USD"/>
-        <TextButton 
-            label="% (7D)" 
-            containerStyle={{
-                marginLeft: SIZES.base
-            }}
-        />
-        <TextButton 
-            label="Top"
-            containerStyle={{
-                marginLeft: SIZES.base
-            }}
-        />
-    </View>
-  )
-}
-
-export default Button
+export default memo(Button)
 
 const styles = StyleSheet.create({
-    container1: {
-        flexDirection: 'row',
-        marginTop: SIZES.radius,
-        marginHorizontal: SIZES.radius,
-    },
-    container2: (containerStyle) => ({
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: 3,
-        paddingHorizontal: 18,
-        borderRadius: 15,
-        backgroundColor: COLORS.gray1,
-        ...containerStyle
-    }),
-    label: {
-        color: COLORS.white,
-        ...FONTS.h3
-    }
+
 })
