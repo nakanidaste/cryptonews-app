@@ -10,7 +10,7 @@ const NewsList = ({ cryptoNews }) => {
         <View style={styles.container}>
             <View style={styles.newsCointainer}>
                 <View style={styles.time}>
-                    <Text style={styles.title}>1 min ago</Text>
+                    <Text style={styles.title}>1 min</Text>
                 </View>
                 <View style={styles.news}>
                     <Text style={styles.title}>Judul</Text>
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     },
     time: {
         height: '80%',
-        width: '20%',
+        width: '15%',
         marginVertical: 5,
         alignItems: 'center',
         padding: 7,
