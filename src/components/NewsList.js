@@ -4,7 +4,7 @@ import { COLORS, FONTS } from '../constants'
 
 const NewsList = ({ cryptoNews }) => {
 
-    //const { judul, link } = cryptoNews
+    const { title, url, source } = cryptoNews
 
     return (
         <View style={styles.container}>
@@ -13,8 +13,8 @@ const NewsList = ({ cryptoNews }) => {
                     <Text style={styles.title}>1 min</Text>
                 </View>
                 <View style={styles.news}>
-                    <Text style={styles.title}>Judul</Text>
-                    <Text style={styles.title}>Link</Text>
+                    <Text style={styles.title}>{title}</Text>
+                    <Text style={styles.title}>{source}</Text>
                 </View>
             </View>
         </View>

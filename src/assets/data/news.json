@@ -1,10 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
-import { COLORS, FONTS } from '../constants'
-import { NewsList } from '../components';
-import axios from "axios";
-
-const data = [
+[
     {
         "title":"First Mover Asia: The Renminbi Rises; Cryptos Suffer Another Lost Weekend",
         "url":"https://www.coindesk.com/markets/2022/02/20/first-mover-asia-the-renminbi-rises-cryptos-suffer-another-lost-weekend/",
@@ -31,31 +25,3 @@ const data = [
         "source":"coindesk.com"
     }
 ]
-
-const News = () => {
-
-    const [news, setNews] = useState(null)
-    const [loading, setLoading] = useState(false)
-
-    return (
-        <View style={styles.container}>
-            <FlatList
-                data={data}
-                renderItem={({item}) => <NewsList cryptoNews={item}/>}
-            />
-        </View>
-    )
-}
-
-export default News;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: COLORS.gray
-    },
-    text: {
-        color: COLORS.white,
-        ...FONTS.body4
-    }
-})
