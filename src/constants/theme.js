@@ -8,6 +8,7 @@ export const COLORS = {
     white: "#fff",
     lightGreen: "#4BEE70",
     red: "#D84035",
+    blue: "#39ace7",
     black: "#000000",
     gray: "#121212",
     gray1: "#1f1f1f",
@@ -53,7 +54,7 @@ export const FONTS = {
     body2: { fontFamily: "Roboto-Regular", fontSize: SIZES.body2, lineHeight: 30 },
     body3: { fontFamily: "Roboto-Regular", fontSize: SIZES.body3, lineHeight: 22 },
     body4: { fontFamily: "Roboto-Thin", fontSize: SIZES.body4, lineHeight: 22 },
-    body5: { fontFamily: "Roboto-Regular", fontSize: SIZES.body5, lineHeight: 22 },
+    body5: { fontFamily: "Roboto-Thin", fontSize: SIZES.body5, lineHeight: 22 },
 };
 
 const appTheme = { COLORS, SIZES, FONTS };

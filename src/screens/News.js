@@ -1,50 +1,46 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList, ActivityIndicator } from 'react-native';
 import { COLORS, FONTS } from '../constants'
 import { NewsList } from '../components';
 import axios from "axios";
-
-const data = [
-    {
-        "title":"First Mover Asia: The Renminbi Rises; Cryptos Suffer Another Lost Weekend",
-        "url":"https://www.coindesk.com/markets/2022/02/20/first-mover-asia-the-renminbi-rises-cryptos-suffer-another-lost-weekend/",
-        "source":"coindesk.com"
-    },
-    {
-        "title":"OpenSea Investigating ‘Exploit Rumors’ as Users Complain of Missing NFTs",
-        "url":"https://www.coindesk.com/business/2022/02/20/opensea-investigating-exploit-rumors-as-users-complain-of-missing-nfts/",
-        "source":"coindesk.com"
-    },
-    {
-        "title":"Staking Claims: Abra’s CEO Talks Passive Income",
-        "url":"https://www.coindesk.com/sponsored-content/staking-claims-abras-ceo-talks-passive-income/",
-        "source":"coindesk.com"
-    },
-    {
-        "title":"Vitalik Buterin Calls Canada's Use of Banks to Stifle Protestors 'Dangerous' ",
-        "url":"https://www.coindesk.com/policy/2022/02/19/vitalik-buterin-calls-canadas-use-of-banks-to-stifle-protestors-dangerous/",
-        "source":"coindesk.com"
-    },
-    {
-        "title":"State Lawmakers in Illinois, Georgia Propose Tax Incentives for Bitcoin Miners",
-        "url":"https://www.coindesk.com/policy/2022/02/18/state-lawmakers-in-illinois-georgia-propose-tax-incentives-for-bitcoin-miners/",
-        "source":"coindesk.com"
-    }
-]
+import Config from 'react-native-config';
 
 const News = () => {
 
-    const [news, setNews] = useState(null)
-    const [loading, setLoading] = useState(false)
+    const [news, setNews] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+
+        const options = {
+            method: 'GET',
+            url: 'https://crypto-news-live3.p.rapidapi.com/news',
+            headers: {
+                'x-rapidapi-host': Config.REACT_APP_RAPID_API_URL,
+                'x-rapidapi-key': Config.REACT_APP_RAPID_API_KEY
+            }
+        }
+
+        axios.request(options).then((response) => {
+
+            setNews(response.data)
+            setLoading(false)
+
+        }).catch((error) => {
+            console.error(error)
+        })
+
+    }, [])
 
     return (
         <View style={styles.container}>
+            {loading ? <ActivityIndicator size="large" color={COLORS.blue} style={styles.loading}/> :
             <FlatList
-                data={data}
+                data={news}
                 renderItem={({item}) => <NewsList cryptoNews={item}/>}
-            />
+            /> }
         </View>
-    )
+    ) 
 }
 
 export default News;
@@ -53,6 +49,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLORS.gray
+    },
+    loading: {
+        flex: 1,
+        alignSelf: 'center',
     },
     text: {
         color: COLORS.white,
