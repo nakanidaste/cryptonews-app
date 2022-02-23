@@ -1,14 +1,17 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { COLORS, FONTS } from '../constants'
 import Icon from 'react-native-vector-icons/dist/AntDesign'
 
-const NewsList = ({ cryptoNews }) => {
+const NewsList = ({ cryptoNews, navigation }) => {
 
     const { title, url, source } = cryptoNews
 
     return (
-        <View style={styles.container}>
+        <TouchableOpacity 
+            style={styles.container} 
+            onPress={() => navigation.navigate('DetailNews', {title, url, source})}
+        >
             <View style={styles.newsCointainer}>
                 <View style={styles.news}>
                     <Text style={styles.title}>{title}  <Icon name="link" size={10} color= {COLORS.blue}/> <Text style={styles.source}>{source}</Text> </Text>            
@@ -18,7 +21,7 @@ const NewsList = ({ cryptoNews }) => {
                     <Icon name="arrowdown" size={18} color= {COLORS.blue} style={styles.icon}/>
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 

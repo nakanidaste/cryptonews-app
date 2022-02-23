@@ -1,8 +1,11 @@
 import React from "react";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { createStackNavigator } from "@react-navigation/stack";
 
-import { News, Market, Profile } from "../screens"
+const Stack = createStackNavigator();
+
+import { News, Market, Profile, DetailNews } from "../screens"
 import { COLORS, icons } from "../constants"
 import { TabIcons } from "../components";
 
@@ -37,14 +40,6 @@ const Tabs = () => {
                     }
                 }}
             />
-            {/* <Tab.Screen
-                name="Portfolio"
-                component={Portfolio}
-            />
-            <Tab.Screen
-                name="Trade"
-                component={News}
-            /> */}
             <Tab.Screen
                 name="Market"
                 component={Market}
@@ -79,4 +74,13 @@ const Tabs = () => {
     )
 }
 
-export default Tabs;
+const Navigation = () => {
+    return (
+        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName={'MainLayout'}>
+            <Stack.Screen name="MainLayout" component={Tabs} />
+            <Stack.Screen name="DetailNews" component={DetailNews} />
+        </Stack.Navigator>
+    )
+}
+
+export default Navigation;

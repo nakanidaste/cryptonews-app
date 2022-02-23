@@ -5,7 +5,7 @@ import { NewsList } from '../components';
 import axios from "axios";
 import Config from 'react-native-config';
 
-const News = () => {
+const News = ({ navigation }) => {
 
     const [news, setNews] = useState([])
     const [loading, setLoading] = useState(true)
@@ -37,7 +37,7 @@ const News = () => {
             {loading ? <ActivityIndicator size="large" color={COLORS.blue} style={styles.loading}/> :
             <FlatList
                 data={news}
-                renderItem={({item}) => <NewsList cryptoNews={item}/>}
+                renderItem={({item}) => <NewsList cryptoNews={item} navigation={navigation}/>}
             /> }
         </View>
     ) 

@@ -27,7 +27,7 @@ export const SIZES = {
     padding: 24,
 
     // font sizes
-    largeTitle: 40,
+    largeTitle: 30,
     h1: 30,
     h2: 22,
     h3: 16,
@@ -44,7 +44,7 @@ export const SIZES = {
     height
 };
 export const FONTS = {
-    largeTitle: { fontFamily: "Roboto-Black", fontSize: SIZES.largeTitle },
+    largeTitle: { fontFamily: "Roboto-Thin", fontSize: SIZES.largeTitle },
     h1: { fontFamily: "Roboto-Black", fontSize: SIZES.h1, lineHeight: 36 },
     h2: { fontFamily: "Roboto-Bold", fontSize: SIZES.h2, lineHeight: 30 },
     h3: { fontFamily: "Roboto-Thin", fontSize: SIZES.h3, lineHeight: 22 },
