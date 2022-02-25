@@ -1,7 +1,8 @@
 import React from 'react'
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Linking } from 'react-native'
 import { COLORS, FONTS } from '../constants'
 import { useRoute } from '@react-navigation/native'
+import { Header } from '../components'
 import Icon from 'react-native-vector-icons/dist/AntDesign'
 
 const DetailNews = () => {
@@ -11,19 +12,31 @@ const DetailNews = () => {
     
     return (
         <View style={styles.container}>
+            <Header 
+                label="Headlines"
+            />
             <View style={styles.detailContainer}>
-                <Text style={styles.title}>{title}</Text>
-                <Text style={styles.text}>Source : <Icon name="link" size={10} color= {COLORS.blue}/> {source}</Text>
+                <Text 
+                    style={styles.title}
+                    onPress={() => Linking.openURL(url)}
+                >{title}
+                </Text>
+                <Text 
+                    style={styles.text}
+                    onPress={() => Linking.openURL('https://www.coindesk.com')}
+                >
+                    Source : <Icon name="link" size={10} color= {COLORS.blue}/> {source}
+                </Text>
                 <Text style={styles.preview}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </Text>
                 <View style={styles.reaction}>
-                    <View style={styles.bullish}>
+                    <TouchableOpacity style={styles.bullish}>
                         <Text style={styles.textBullish}><Icon name="arrowup" size={18} color= {COLORS.lightGreen}/> Bullish</Text>
-                    </View>
-                    <View style={styles.bearish}>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.bearish}>
                         <Text style={styles.textBearish}>Bearish <Icon name="arrowdown" size={18} color= {COLORS.red}/></Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
                 <Text style={styles.jumlahComment}>0 Comment</Text>
                 <View style={styles.commentContainer}>
@@ -71,10 +84,11 @@ const styles = StyleSheet.create({
         //padding: 10,
         //alignSelf: 'center',
         ...FONTS.largeTitle,
+        //fontWeight: '500'
         //backgroundColor: COLORS.blue
     },
     text: {
-        color: COLORS.white,
+        color: COLORS.blue,
         ...FONTS.body4,
         alignSelf: 'flex-end'
     },
@@ -134,7 +148,7 @@ const styles = StyleSheet.create({
         width: '75%',
         //margin: 12,
         borderWidth: 1,
-        borderColor: COLORS.white,
+        borderColor: COLORS.blue,
         opacity: 0.87
         //padding: 10,
     },

@@ -21,11 +21,11 @@ const styles = StyleSheet.create({
     icon: (focused, iconStyle) => ({
         width: 25,
         height: 25,
-        tintColor: focused ? COLORS.white : COLORS.secondary,
+        tintColor: focused ? COLORS.blue : COLORS.secondary,
         ...iconStyle 
     }),
     label: (focused) => ({
-        color: focused ? COLORS.white : COLORS.secondary,
+        color: focused ? COLORS.blue : COLORS.secondary,
         ...FONTS.h4
     })
 })

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, FlatList, ActivityIndicator } from 'react-native';
 import { COLORS, FONTS } from '../constants'
-import { NewsList } from '../components';
+import { NewsList, Header } from '../components';
 import axios from "axios";
 import Config from 'react-native-config';
 
@@ -32,13 +32,23 @@ const News = ({ navigation }) => {
 
     }, [])
 
+    if (loading) {
+        return (
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color={COLORS.blue} style={styles.loading}/>
+            </View>
+        )
+    }
+
     return (
         <View style={styles.container}>
-            {loading ? <ActivityIndicator size="large" color={COLORS.blue} style={styles.loading}/> :
+            <Header
+                label="CryptoNews"
+            />
             <FlatList
                 data={news}
                 renderItem={({item}) => <NewsList cryptoNews={item} navigation={navigation}/>}
-            /> }
+            /> 
         </View>
     ) 
 }
@@ -47,6 +57,10 @@ export default News;
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
+        backgroundColor: COLORS.gray
+    },
+    loadingContainer: {
         flex: 1,
         backgroundColor: COLORS.gray
     },

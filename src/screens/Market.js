@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, FlatList, RefreshControl, View, ActivityIndicator } from 'react-native';
-import { CoinList } from '../components';
+import { CoinList, Header } from '../components';
 import { COLORS, SIZES } from '../constants';
 import { getMarketData } from '../services/requests'
 
@@ -33,9 +33,19 @@ const Market = () => {
         fetchCoins()
     }, [])
 
+    if (loading) {
+        return (
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color={COLORS.blue} style={styles.loading}/>
+            </View>
+        )
+    }
+
     return (
         <View style={styles.container}>
-            {loading ? <ActivityIndicator size="large" color={COLORS.blue} style={styles.loading}/> :
+            <Header
+                label="Top Coins"
+            />
             <FlatList 
                 data={coins}
                 renderItem={({item}) => <CoinList marketCoin={item}/>}
@@ -46,7 +56,7 @@ const Market = () => {
                         onRefresh={refecthCoins}
                     />
                 }
-            /> }
+            /> 
         </View>
     )
 }
@@ -64,6 +74,10 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         justifyContent: 'space-around',
         backgroundColor: COLORS.lightGray2
+    },
+    loadingContainer: {
+        flex: 1,
+        backgroundColor: COLORS.gray
     },
     loading: {
         flex: 1,
