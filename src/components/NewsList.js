@@ -17,8 +17,8 @@ const NewsList = ({ cryptoNews, navigation }) => {
                     <Text style={styles.title}>{title}  <Icon name="link" size={10} color= {COLORS.blue}/> <Text style={styles.source}>{source}</Text> </Text>            
                 </View>
                 <View style={styles.time}>
-                    <Icon name="arrowup" size={18} color= {COLORS.blue} style={styles.icon}/>
-                    <Icon name="arrowdown" size={18} color= {COLORS.blue} style={styles.icon}/>
+                    <Icon name="arrowup" size={10} color= {COLORS.blue} style={styles.icon}/>
+                    <Icon name="arrowdown" size={10} color= {COLORS.blue} style={styles.icon}/>
                 </View>
             </View>
         </TouchableOpacity>
@@ -30,18 +30,22 @@ export default NewsList
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
-        backgroundColor: COLORS.gray
+        backgroundColor: COLORS.gray,
+        borderBottomWidth: 0.6,
+        borderBottomColor: COLORS.lightGray,
     },
     newsCointainer: {
         flexDirection: 'row',
-        borderBottomWidth: 0.3,
-        borderBottomColor: COLORS.lightGray,
+        // borderBottomWidth: 0.3,
+        // borderBottomColor: COLORS.lightGray,
         paddingVertical: 10,
+        //backgroundColor: 'red'
+        
     },
     time: {
         flexDirection: 'column',
         height: '80%',
-        width: '15%',
+        width: '12%',
         marginVertical: 5,
         alignItems: 'center',
         //padding: 7,
@@ -66,6 +70,7 @@ const styles = StyleSheet.create({
     },
     icon: {
         marginVertical: 5,
-        opacity: 0.8
+        opacity: 0.8,
+        paddingLeft: 15
     }
 })
