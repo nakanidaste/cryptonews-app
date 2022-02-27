@@ -33,19 +33,12 @@ const Market = () => {
         fetchCoins()
     }, [])
 
-    if (loading) {
-        return (
-            <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color={COLORS.blue} style={styles.loading}/>
-            </View>
-        )
-    }
-
     return (
         <View style={styles.container}>
             <Header
                 label="Top Coins"
             />
+            {loading ? <ActivityIndicator size="large" color={COLORS.blue} style={styles.loading}/> :
             <FlatList 
                 data={coins}
                 renderItem={({item}) => <CoinList marketCoin={item}/>}
@@ -56,7 +49,7 @@ const Market = () => {
                         onRefresh={refecthCoins}
                     />
                 }
-            /> 
+            /> }
         </View>
     )
 }

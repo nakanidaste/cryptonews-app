@@ -32,23 +32,16 @@ const News = ({ navigation }) => {
 
     }, [])
 
-    if (loading) {
-        return (
-            <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color={COLORS.blue} style={styles.loading}/>
-            </View>
-        )
-    }
-
     return (
         <View style={styles.container}>
             <Header
                 label="CryptoNews"
             />
+            {loading ? <ActivityIndicator size="large" color={COLORS.blue} style={styles.loading}/> :
             <FlatList
                 data={news}
                 renderItem={({item}) => <NewsList cryptoNews={item} navigation={navigation}/>}
-            /> 
+            /> }
         </View>
     ) 
 }
@@ -57,10 +50,6 @@ export default News;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: COLORS.gray
-    },
-    loadingContainer: {
         flex: 1,
         backgroundColor: COLORS.gray
     },
