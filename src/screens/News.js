@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, FlatList, ActivityIndicator } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { StyleSheet, View, FlatList, ActivityIndicator, Text } from 'react-native';
 import { COLORS, FONTS } from '../constants'
 import { NewsList, Header } from '../components';
 import axios from "axios";

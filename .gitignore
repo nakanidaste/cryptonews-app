@@ -61,3 +61,4 @@ buck-out/
 
 # secret
 .env
+android/app/google-services.json
