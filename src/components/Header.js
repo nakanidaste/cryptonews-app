@@ -18,10 +18,11 @@ const styles = StyleSheet.create({
         height: 50,
         width: '100%',
         backgroundColor: COLORS.primary,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     text: {
-        alignSelf: 'center',
+        marginTop: 5,
         ...FONTS.body2,
         color: COLORS.blue
     }

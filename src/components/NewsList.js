@@ -18,8 +18,8 @@ const NewsList = ({ cryptoNews, navigation }) => {
                     <Text style={styles.title}>{title}  <Icon name="link" size={10} color= {COLORS.blue}/> <Text style={styles.source}>{source}</Text> </Text>            
                 </View>
                 <View style={styles.time}>
-                    <Icon name="arrowup" size={10} color= {COLORS.blue} style={styles.icon}/>
-                    <Icon name="arrowdown" size={10} color= {COLORS.blue} style={styles.icon}/>
+                    {/* <Icon name="arrowup" size={10} color= {COLORS.blue} style={styles.icon}/>
+                    <Icon name="arrowdown" size={10} color= {COLORS.blue} style={styles.icon}/> */}
                 </View>
             </View>
         </TouchableOpacity>

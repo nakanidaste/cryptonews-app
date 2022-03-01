@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     },
     coinContainer: {
         flexDirection: 'row',
-        borderBottomWidth: 0.3,
+        borderBottomWidth: 0.6,
         borderBottomColor: COLORS.lightGray,
         padding: 10,
     },
