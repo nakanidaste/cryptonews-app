@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { StyleSheet, View, FlatList, ActivityIndicator, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, FlatList, ActivityIndicator } from 'react-native';
 import { COLORS, FONTS } from '../constants'
 import { NewsList, Header } from '../components';
+import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob'
 import axios from "axios";
 import Config from 'react-native-config';
 
@@ -37,6 +38,7 @@ const News = ({ navigation }) => {
             <Header
                 label="CryptoNews"
             />
+            <BannerAd size={BannerAdSize.SMART_BANNER} unitId={TestIds.BANNER}/>
             {loading ? <ActivityIndicator size="large" color={COLORS.blue} style={styles.loading}/> :
             <FlatList
                 data={news}

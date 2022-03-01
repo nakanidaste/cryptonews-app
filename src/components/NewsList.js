@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Linking } from 'react-native'
 import { COLORS, FONTS } from '../constants'
 import Icon from 'react-native-vector-icons/dist/AntDesign'
 
@@ -10,7 +10,8 @@ const NewsList = ({ cryptoNews, navigation }) => {
     return (
         <TouchableOpacity 
             style={styles.container} 
-            onPress={() => navigation.navigate('DetailNews', {title, url, source})}
+            //onPress={() => navigation.navigate('DetailNews', {title, url, source})}
+            onPress={() => Linking.openURL(url)}
         >
             <View style={styles.newsCointainer}>
                 <View style={styles.news}>

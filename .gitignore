@@ -62,3 +62,5 @@ buck-out/
 # secret
 .env
 android/app/google-services.json
+my-upload-key.keystore
+firebase.json

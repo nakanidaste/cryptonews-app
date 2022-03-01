@@ -6,6 +6,8 @@ import { Header, Login, SignUp } from '../components'
 const Profile = () => {
 
     const [login, setLogin] = useState(true)
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
     return (
         <View style={styles.container}>
