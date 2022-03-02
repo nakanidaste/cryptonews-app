@@ -5,7 +5,7 @@ import { StatusBar } from 'react-native';
 import { DetailNews } from "../screens"
 import { AuthContext } from "../services/AuthProvider";
 import Tabs from "./tabs"   
-import auth from '@react-native-firebase/auth'
+import auth, { firebase } from '@react-native-firebase/auth'
 
 const Stack = createStackNavigator();
 
@@ -22,7 +22,6 @@ const Navigation = () => {
     useEffect(() => {
         const subcriber = auth().onAuthStateChanged(onAuthStateChanged)
         anonymous()
-
         return subcriber
     }, [])
 

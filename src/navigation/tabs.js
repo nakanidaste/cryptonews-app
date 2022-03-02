@@ -15,9 +15,10 @@ const Tabs = () => {
                 tabBarStyle: {
                     height: 70,
                     backgroundColor: COLORS.primary,
-                    borderTopColor: "trasparent"
+                    borderTopColor: "trasparent",
+                    position: 'absolute'
                 },
-                headerShown: false
+                headerShown: false,
             }}
         >
             <Tab.Screen

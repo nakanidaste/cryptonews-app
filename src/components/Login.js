@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
 import { COLORS, FONTS } from '../constants';
 
-const Login = ({ valueEmail, valuePassword, onChangeText, keyboardType }) => {
+const Login = () => {
   return (
     <View style={styles.loginContainer}>
         <Text style={styles.title}>Login for access App with no Advertisement</Text>

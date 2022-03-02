@@ -38,7 +38,19 @@ const News = ({ navigation }) => {
             <Header
                 label="CryptoNews"
             />
-            <BannerAd size={BannerAdSize.SMART_BANNER} unitId={TestIds.BANNER}/>
+            <BannerAd 
+                size={BannerAdSize.SMART_BANNER} 
+                unitId={"ca-app-pub-3940256099942544/6300978111"}
+                requestOptions={{
+                    requestNonPersonalizedAdsOnly: true
+                }}
+                onAdLoaded={() => {
+                    console.log('Advert Loaded')
+                }}
+                onAdFailedToLoad={(e) => {
+                    console.error('Advert failed to load: ',e)
+                }}
+            />
             {loading ? <ActivityIndicator size="large" color={COLORS.blue} style={styles.loading}/> :
             <FlatList
                 data={news}
