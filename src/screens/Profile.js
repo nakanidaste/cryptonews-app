@@ -1,172 +1,99 @@
-import React, { useState, useContext } from 'react';
-import { View, Text, StyleSheet, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import React, { useContext, useEffect } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { COLORS, FONTS } from '../constants';
-import { Header, InputData } from '../components'
+import { Header } from '../components'
 import { AuthContext } from '../services/AuthProvider'
 import auth, { firebase } from '@react-native-firebase/auth'
 
-const Profile = () => {
+const Profile = ({ navigation }) => {
 
-    const [masuk, setMasuk] = useState(true)
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const {user, logout} = useContext(AuthContext)
 
-    const {login, register, user} = useContext(AuthContext)
+    useEffect(() => {
+        
+    }, [user])
 
-    // if(user) {
+    // if (!firebase.auth().currentUser.isAnonymous) {
     //     return (
-    //         <View style={styles.container}>
-    //             <Text style={{color: COLORS.white}}>Berhasil Login</Text>
-    //             <Text style={{color: COLORS.white}}>{user.uid}</Text>
+    //         <View style={styles.containerProfile}>
+    //             <Text style={styles.text}>{user.uid}</Text>
+    //             <Text style={styles.text1} onPress={() => logout()}>Log Out</Text>
     //         </View>
     //     )
-    // }
-
-    if(masuk) {
+    // } else {
         return (
-            <View style={styles.container}>
-                <Header label="Login"/>
-                <Text style={styles.title}>Login for access App with no Advertisement</Text>
-                <KeyboardAvoidingView enabled={true}>
-                <InputData
-                    label="Email :"
-                    placeholder="Email"
-                    onChangeText={(text) => setEmail(text)}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                    style={styles.email}
-                    gaya={styles.textEmail}
-                />
-                <InputData
-                    label="Password :"
-                    placeholder="Password"
-                    onChangeText={(text) => setPassword(text)}
-                    secureTextEntry={true}
-                    style={styles.password}
-                    gaya={styles.textPassword}
-                />
-                <TouchableOpacity style={styles.button} onPress={() => login(email, password)}>
-                    <Text style={styles.buttonText}>Login</Text>
-                </TouchableOpacity>
-                <Text style={styles.text}>Don't have an account? <Text style={{color: COLORS.blue}} onPress={() => setMasuk(false)}>Sign Up here</Text></Text>
-                </KeyboardAvoidingView>
+            <View style={styles.container2}>
+                <Header label="Profile"/>
+                <View style={styles.container}>
+                    <View style={styles.content}>
+                        <Text style={styles.text1}>You are logged in anonymously,</Text>
+                        <Text style={styles.text}>to access the App without Advertisement</Text>  
+                        <Text style={styles.text}>please authorize first.</Text>
+                        <View style={styles.btnContainer}>
+                            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
+                                <Text style={styles.buttonText}>Login</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SignUp')}>
+                                <Text style={styles.buttonText}>Sign Up</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>  
+                </View>
             </View>
         )
-    }
-
-    if(!masuk)
-    return (
-        <View style={styles.container}>
-            <Header label="Sign Up"/>
-                <Text style={styles.title}>SignUp for access App with no Advertisement</Text>
-                <KeyboardAvoidingView enabled={true}>
-                <InputData
-                    label="Email :"
-                    placeholder="Email"
-                    onChangeText={(text) => setEmail(text)}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                    style={styles.email}
-                    gaya={styles.textEmail}
-                />
-                <InputData
-                    label="Password :"
-                    placeholder="Password"
-                    onChangeText={(text) => setPassword(text)}
-                    secureTextEntry={true}
-                    style={styles.password}
-                    gaya={styles.textPassword}
-                />
-                <TouchableOpacity style={styles.button} onPress={() => register(email, password)}>
-                    <Text style={styles.buttonText}>Sign Up</Text>
-                </TouchableOpacity>
-                <Text style={styles.text}>Have an account? <Text style={{color: COLORS.blue}} onPress={() => setMasuk(true)}>Login here</Text></Text>
-                <Text style={{color: COLORS.white}}>{user.uid}</Text>
-                </KeyboardAvoidingView>
-        </View>
-    )
-
+    //}
 }
 
 export default Profile;
 
 const styles = StyleSheet.create({
     container: {
+        //flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    container2: {
         flex: 1,
         backgroundColor: COLORS.gray,
     },
-    email: {
-        color: COLORS.white,
+    // containerProfile: {
+    //     flex: 1,
+    //     backgroundColor: COLORS.gray,
+    // },
+    content: {
+        height: '55%',
         borderWidth: 1,
         borderColor: COLORS.white,
-        width: '100%',
-        height: 50,
-        marginVertical: 10,
-        paddingLeft: 8,
+        backgroundColor: "#020202",
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 70
     },
-    textEmail: {
-        alignSelf: 'flex-start',
+    text: {
         color: COLORS.white,
         ...FONTS.body4,
-        height: 20,
-        //marginTop: 30
     },
-    password: {
-        color: COLORS.white,
-        borderWidth: 1,
-        borderColor: COLORS.white,
-        width: '100%',
-        height: 50,
-        paddingLeft: 8,
-    },
-    textPassword: {
-        alignSelf: 'flex-start',
+    text1: {
         color: COLORS.white,
         ...FONTS.body4,
-        height: 20,
-        marginTop: 50,
-        marginBottom: 10
     },
-    fullname: {
-        color: COLORS.white,
-        borderWidth: 1,
-        borderColor: COLORS.white,
-        width: '100%',
-        height: 50,
-        marginVertical: 10,
-        paddingLeft: 8,
-    },
-    textFullname: {
-        alignSelf: 'flex-start',
-        color: COLORS.white,
-        ...FONTS.body4,
-        height: 20,
-    },
-    title: {
-        color: COLORS.white,
-        ...FONTS.body4,
+    btnContainer: {
+        flexDirection: 'row',
         marginTop: 20,
-        alignSelf: 'center'
+        padding: 10,
+        justifyContent: 'center',
     },
     button: {
         height: 50,
-        width: '90%',
+        width: '40%',
         borderWidth: 1,
         borderColor: COLORS.blue,
-        marginTop: 140,
+        marginHorizontal: 10,
         justifyContent: 'center',
-        alignSelf: 'center'
     },
     buttonText: {
         alignSelf: 'center',
         color: COLORS.blue,
         ...FONTS.body4
     },
-    text: {
-        color: COLORS.white,
-        ...FONTS.body4,
-        //marginTop: 20,
-        alignSelf: 'center',
-        marginTop: 20
-    }
 })
