@@ -3,24 +3,32 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { COLORS, FONTS } from '../constants';
 import { Header } from '../components'
 import { AuthContext } from '../services/AuthProvider'
-import auth, { firebase } from '@react-native-firebase/auth'
+import { firebase } from '@react-native-firebase/auth'
 
 const Profile = ({ navigation }) => {
 
-    const {user, logout} = useContext(AuthContext)
+    const {user, logout, anonymous} = useContext(AuthContext)
 
     useEffect(() => {
         
     }, [user])
 
-    // if (!firebase.auth().currentUser.isAnonymous) {
-    //     return (
-    //         <View style={styles.containerProfile}>
-    //             <Text style={styles.text}>{user.uid}</Text>
-    //             <Text style={styles.text1} onPress={() => logout()}>Log Out</Text>
-    //         </View>
-    //     )
-    // } else {
+    if (!firebase.auth().currentUser.isAnonymous) {
+        return (
+            <View style={styles.containerProfile}>
+                <Text style={styles.text}>{user.uid}</Text>
+                <Text 
+                    style={styles.text1} 
+                    onPress={() => {
+                        anonymous()
+                        //logout()  
+                    }}
+                >
+                Log Out
+                </Text>
+            </View>
+        )
+    } if(firebase.auth().currentUser.isAnonymous) {
         return (
             <View style={styles.container2}>
                 <Header label="Profile"/>
@@ -33,15 +41,16 @@ const Profile = ({ navigation }) => {
                             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
                                 <Text style={styles.buttonText}>Login</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SignUp')}>
+                            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Onboarding')}>
                                 <Text style={styles.buttonText}>Sign Up</Text>
                             </TouchableOpacity>
                         </View>
+                        <Text style={{color: COLORS.white}}>{user.uid}</Text>
                     </View>  
                 </View>
             </View>
         )
-    //}
+    }
 }
 
 export default Profile;
@@ -56,10 +65,10 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.gray,
     },
-    // containerProfile: {
-    //     flex: 1,
-    //     backgroundColor: COLORS.gray,
-    // },
+    containerProfile: {
+        flex: 1,
+        backgroundColor: COLORS.gray,
+    },
     content: {
         height: '55%',
         borderWidth: 1,
