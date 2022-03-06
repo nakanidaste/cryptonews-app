@@ -34,7 +34,13 @@ const Login = ({ navigation }) => {
                 style={styles.password}
                 gaya={styles.textPassword}
             />
-            <TouchableOpacity style={styles.button} onPress={() => login(email, password)}>
+            <TouchableOpacity 
+                style={styles.button} 
+                onPress={() => {
+                    login(email, password)
+                    navigation.goBack()
+                }}
+            >
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
             <Text style={styles.text}>Don't have an account? <Text style={{color: COLORS.blue}} onPress={() => setMasuk(false)}>Sign Up here</Text></Text>

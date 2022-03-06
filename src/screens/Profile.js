@@ -20,8 +20,9 @@ const Profile = ({ navigation }) => {
                 <Text 
                     style={styles.text1} 
                     onPress={() => {
-                        anonymous()
-                        //logout()  
+                        //anonymous()
+                        //navigation.navigate("Onboarding") 
+                        logout() 
                     }}
                 >
                 Log Out
