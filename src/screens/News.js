@@ -3,6 +3,7 @@ import { StyleSheet, View, FlatList, ActivityIndicator } from 'react-native';
 import { COLORS, FONTS } from '../constants'
 import { NewsList, Header } from '../components';
 import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob'
+import { firebase } from '@react-native-firebase/auth'
 import axios from "axios";
 import Config from 'react-native-config';
 
@@ -38,6 +39,7 @@ const News = ({ navigation }) => {
             <Header
                 label="CryptoNews"
             />
+            {firebase.auth().currentUser.isAnonymous ?
             <BannerAd 
                 size={BannerAdSize.SMART_BANNER} 
                 unitId={"ca-app-pub-3940256099942544/6300978111"}
@@ -50,7 +52,7 @@ const News = ({ navigation }) => {
                 onAdFailedToLoad={(e) => {
                     console.error('Advert failed to load: ',e)
                 }}
-            />
+            /> : null}
             {loading ? <ActivityIndicator size="large" color={COLORS.blue} style={styles.loading}/> :
             <FlatList
                 data={news}

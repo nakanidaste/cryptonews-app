@@ -43,7 +43,7 @@ const Login = ({ navigation }) => {
             >
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
-            <Text style={styles.text}>Don't have an account? <Text style={{color: COLORS.blue}} onPress={() => setMasuk(false)}>Sign Up here</Text></Text>
+            <Text style={styles.text}>Don't have an account? <Text style={{color: COLORS.blue}} onPress={() => navigation.navigate("SignUp")}>Sign Up here</Text></Text>
             </KeyboardAvoidingView>
         </View>
     )

@@ -4,7 +4,7 @@ import { COLORS, FONTS } from '../constants';
 import { Header, InputData } from '../components'
 import { AuthContext } from '../services/AuthProvider'
 
-const SignUp = () => {
+const SignUp = ({ navigation }) => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -36,8 +36,8 @@ const SignUp = () => {
             <TouchableOpacity style={styles.button} onPress={() => register(email, password)}>
                 <Text style={styles.buttonText}>Sign Up</Text>
             </TouchableOpacity>
-            <Text style={styles.text}>Have an account? <Text style={{color: COLORS.blue}} onPress={() => setMasuk(true)}>Login here</Text></Text>
-            <Text style={{color: COLORS.white}}>{user.uid}</Text>
+            <Text style={styles.text}>Have an account? <Text style={{color: COLORS.blue}} onPress={() => navigation.navigate("Login")}>Login here</Text></Text>
+            {/* <Text style={{color: COLORS.white}}>{user.uid}</Text> */}
             </KeyboardAvoidingView>
         </View>
     )

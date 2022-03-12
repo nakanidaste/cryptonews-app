@@ -15,21 +15,21 @@ const Profile = ({ navigation }) => {
 
     if (!firebase.auth().currentUser.isAnonymous) {
         return (
-            <View style={styles.containerProfile}>
-                <Text style={styles.text}>{user.uid}</Text>
-                <Text 
-                    style={styles.text1} 
-                    onPress={() => {
-                        //anonymous()
-                        //navigation.navigate("Onboarding") 
-                        logout() 
-                    }}
-                >
-                Log Out
-                </Text>
+            <View style={styles.container2}>
+                <Header label="Profile"/>
+                <View style={styles.container}>
+                    <View style={styles.content2}>
+                        <Text style={styles.text1}>You are logged in authorized,</Text>
+                        <Text style={styles.text}>please enjoy our app without Advertisement.</Text>
+                        {/* <Text style={styles.text}>{user.uid}</Text> */}
+                        {/* <TouchableOpacity style={styles.buttonLogout} onPress={() => {logout()}}>
+                            <Text style={styles.buttonText}>Log Out</Text>
+                        </TouchableOpacity> */}
+                    </View>
+                </View>
             </View>
         )
-    } if(firebase.auth().currentUser.isAnonymous) {
+    } 
         return (
             <View style={styles.container2}>
                 <Header label="Profile"/>
@@ -46,12 +46,11 @@ const Profile = ({ navigation }) => {
                                 <Text style={styles.buttonText}>Sign Up</Text>
                             </TouchableOpacity>
                         </View>
-                        <Text style={{color: COLORS.white}}>{user.uid}</Text>
+                        {/* <Text style={{color: COLORS.white}}>{user.uid}</Text> */}
                     </View>  
                 </View>
             </View>
         )
-    }
 }
 
 export default Profile;
@@ -66,12 +65,18 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.gray,
     },
-    containerProfile: {
-        flex: 1,
-        backgroundColor: COLORS.gray,
-    },
     content: {
         height: '55%',
+        borderWidth: 1,
+        borderColor: COLORS.white,
+        backgroundColor: "#020202",
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 70
+    },
+    content2: {
+        height: '45%',
+        width: '80%',
         borderWidth: 1,
         borderColor: COLORS.white,
         backgroundColor: "#020202",
@@ -99,6 +104,14 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: COLORS.blue,
         marginHorizontal: 10,
+        justifyContent: 'center',
+    },
+    buttonLogout: {
+        height: 40,
+        width: '30%',
+        borderWidth: 1,
+        borderColor: COLORS.blue,
+        marginTop: 15,
         justifyContent: 'center',
     },
     buttonText: {
