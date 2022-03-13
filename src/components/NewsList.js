@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
         backgroundColor: COLORS.gray,
-        borderBottomWidth: 0.6,
+        borderBottomWidth: 1,
         borderBottomColor: COLORS.lightGray,
     },
     newsCointainer: {

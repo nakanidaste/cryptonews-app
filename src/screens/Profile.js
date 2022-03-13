@@ -7,7 +7,7 @@ import { firebase } from '@react-native-firebase/auth'
 
 const Profile = ({ navigation }) => {
 
-    const {user, logout, anonymous} = useContext(AuthContext)
+    const {user, logout} = useContext(AuthContext)
 
     useEffect(() => {
         
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#020202",
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 70
+        marginTop: 100
     },
     text: {
         color: COLORS.white,
