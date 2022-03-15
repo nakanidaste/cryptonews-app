@@ -1,17 +1,10 @@
-import React, { useContext, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 import { COLORS, FONTS } from '../constants';
 import { Header } from '../components'
-import { AuthContext } from '../services/AuthProvider'
 import { firebase } from '@react-native-firebase/auth'
 
 const Profile = ({ navigation }) => {
-
-    const {user, logout} = useContext(AuthContext)
-
-    useEffect(() => {
-        
-    }, [user])
 
     if (!firebase.auth().currentUser.isAnonymous) {
         return (
@@ -20,11 +13,11 @@ const Profile = ({ navigation }) => {
                 <View style={styles.container}>
                     <View style={styles.content2}>
                         <Text style={styles.text1}>You are logged in authorized,</Text>
-                        <Text style={styles.text}>please enjoy our app without Advertisement.</Text>
-                        {/* <Text style={styles.text}>{user.uid}</Text> */}
-                        {/* <TouchableOpacity style={styles.buttonLogout} onPress={() => {logout()}}>
-                            <Text style={styles.buttonText}>Log Out</Text>
-                        </TouchableOpacity> */}
+                        <Text style={styles.text}>you can send criticism and suggestions for</Text>
+                        <Text style={styles.text1}>application development here.</Text>
+                        <TouchableOpacity style={styles.buttonLogout} onPress={() => Linking.openURL(`mailto:samuelys945@gmail.com?subject=Feedback Application Development`)}>
+                            <Text style={styles.buttonText}>Email</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
@@ -36,8 +29,8 @@ const Profile = ({ navigation }) => {
                 <View style={styles.container}>
                     <View style={styles.content}>
                         <Text style={styles.text1}>You are logged in anonymously,</Text>
-                        <Text style={styles.text}>to access the App without Advertisement</Text>  
-                        <Text style={styles.text}>please authorize first.</Text>
+                        <Text style={styles.text}>to to send criticism and suggestions for application</Text>  
+                        <Text style={styles.text}>development please authorize first.</Text>
                         <View style={styles.btnContainer}>
                             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
                                 <Text style={styles.buttonText}>Login</Text>
@@ -46,7 +39,6 @@ const Profile = ({ navigation }) => {
                                 <Text style={styles.buttonText}>Sign Up</Text>
                             </TouchableOpacity>
                         </View>
-                        {/* <Text style={{color: COLORS.white}}>{user.uid}</Text> */}
                     </View>  
                 </View>
             </View>
@@ -57,7 +49,6 @@ export default Profile;
 
 const styles = StyleSheet.create({
     container: {
-        //flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     },

@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, View, FlatList, ActivityIndicator, Modal, Image, Text, TouchableOpacity, Animated, Linking } from 'react-native';
 import { COLORS, FONTS } from '../constants'
 import { NewsList, Header } from '../components';
-import { BannerAd, BannerAdSize } from '@react-native-firebase/admob'
-import { firebase } from '@react-native-firebase/auth'
 import axios from "axios";
 import Config from 'react-native-config';
 
@@ -87,7 +85,8 @@ const News = ({ navigation }) => {
                 <Text style={{marginVertical: 10, ...FONTS.body4, textAlign: 'center', color: COLORS.white}}>About Us</Text>
                 <Text style={{marginVertical: 10, ...FONTS.body4, textAlign: 'left', color: COLORS.white}}>CryptoNews is an app that will provide you with latest news about crypto, so you don't missed the news while doing your daily activity.</Text>
                 <Text style={{marginTop: 10, ...FONTS.body4, textAlign: 'left', color: COLORS.white}}>This app develops by Lullaby.</Text>
-                <Text style={{...FONTS.body4, textAlign: 'left', color: COLORS.white}}>Shout out to Icons8 for the illustrations, you can check their website on <Text style={{...FONTS.body4, color: COLORS.blue}} onPress={() => Linking.openURL('https://icons8.com')}>https://icons8.com</Text></Text>
+                <Text style={{...FONTS.body4, textAlign: 'left', color: COLORS.white}}>Shout out to Icons8 for the illustrations, you can check their website on <Text style={{...FONTS.body4, color: COLORS.blue}} onPress={() => Linking.openURL('https://icons8.com')}>https://icons8.com</Text> and to CoinGecko</Text>
+                <Text style={{...FONTS.body4, textAlign: 'left', color: COLORS.white}}>for the API we use in this App</Text>
                 <Text style={{marginTop: 20, ...FONTS.body4, textAlign: 'left', color: COLORS.white}}>You can support me on Karyakarsa for development of this app.</Text>
                 <TouchableOpacity 
                     style={styles.button}
@@ -96,19 +95,6 @@ const News = ({ navigation }) => {
                     <Text style={{...FONTS.body4, textAlign: 'center', color: COLORS.white}}>Karyakarsa</Text>
                 </TouchableOpacity>
             </ModalPoup>
-            <BannerAd 
-                size={BannerAdSize.SMART_BANNER} 
-                unitId={"ca-app-pub-3836030351211700/1666925991"}
-                requestOptions={{
-                    requestNonPersonalizedAdsOnly: true
-                }}
-                onAdLoaded={() => {
-                    console.log('Advert Loaded')
-                }}
-                onAdFailedToLoad={(e) => {
-                    console.error('Advert failed to load: ',e)
-                }}
-            /> 
             {loading ? <ActivityIndicator size="large" color={COLORS.blue} style={styles.loading}/> :
             <FlatList
                 data={news}
@@ -155,7 +141,7 @@ const styles = StyleSheet.create({
     }, 
     button: {
         backgroundColor: COLORS.red,
-        marginTop: 10,
+        marginTop: 20,
         height: 30,
         justifyContent: 'center'
     }
